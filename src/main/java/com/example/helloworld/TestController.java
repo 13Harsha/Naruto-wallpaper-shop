@@ -40,7 +40,7 @@ public class TestController {
             logger.warn("Absolute path attempted: {}", resource.getFile().getAbsolutePath());
             
             // List contents of the static/images directory
-            Path imagesDir = Paths.get("src/main/resources/static/images");
+            Path imagesDir = Paths.get("app/static/images");
             logger.info("Contents of {}: {}", imagesDir, Files.list(imagesDir).map(Path::getFileName).toArray());
             
             return ResponseEntity.notFound().build();
