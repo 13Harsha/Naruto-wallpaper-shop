@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Naruto Wallpapers Shop</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('/images/background.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            color: #ff6600;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            padding: 20px 0;
+            background-color: rgba(0,0,0,0.5);
+            margin: 0;
+        }
+        .wallpaper-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 20px;
+        }
+        .wallpaper-item {
+            width: 300px;
+            margin: 20px;
+            padding: 10px;
+            border: 2px solid #ff6600;
+            border-radius: 10px;
+            background-color: rgba(255,255,255,0.8);
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
+        .wallpaper-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        .buy-button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .buy-button:hover {
+            background-color: #45a049;
+        }
+        .wallpaper-item h2, .wallpaper-item p {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the Naruto Wallpapers Shop!</h1>
+    <div class="wallpaper-container">
+        <div th:each="wallpaper : ${wallpapers}" class="wallpaper-item">
+            <img th:src="@{'/images/' + ${wallpaper.imageUrl}}" th:alt="${wallpaper.name}">
+            <h2 th:text="${wallpaper.name}"></h2>
+            <p th:text="'Price: $' + ${#numbers.formatDecimal(wallpaper.price, 1, 2)}"></p>
+            <button class="buy-button">Buy Now</button>
+        </div>
+    </div>
+</body>
+</html>
